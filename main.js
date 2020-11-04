@@ -1,80 +1,16 @@
-/*
-Exercise 1:
-Write a function testNum that takes a number as an argument and returns a Promise that tests if the value is less than or greater than the value 10. Log the result to the console.
-*/
-
-// 1. Write a function testNum that takes a number as an argument and returns a Promise that tests if the value is less than or greater than the value 10.
-
-const testNum = num => {
-    return new Promise((resolve, reject) => {
-        if (num > 10) {
-            resolve(num + ' is greater than 10');
-        } else {
-            reject(num + ' is less than 10');
-        }
-    });
-};
-
-testNum(9)
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
-
-testNum(11)
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
-
-
-/*
-Exercise 2:
-Write two functions that use Promises that you can chain! The first function, makeAllCaps(), will take in an array of words and capitalize them, and then the second function, sortWords(), will sort the words in alphabetical order. If the array contains anything but strings, it should throw an error.
-Then call these functions by *chaining* the promises
-*/
-
-const makeAllCaps = () => {};
-const sortWords = () => {};
-
-const arrayOfWords = ['cucumber', 'tomatos', 'avocado'];
-const complicatedArray = ['cucumber', 44, true];
-
-// call both functions, chain them together and log the result to the console
-
-const makeAllCaps = words => {
-    return new Promise((resolve, reject) => {
-        if (words.every(word => {
-                return typeof word === 'string';
-            })) {
-            resolve(
-                sortWords(words.map(word => {
-                    return word.toUpperCase();
-                }))
-            );
-
-        } else {
-            reject('Not a string!');
-        }
-    });
+const numbers = function(...args) {
+    return args.reduce((acc, item) => {
+        return acc + item;
+    })
 }
 
-const sortWords = words => {
-    return new Promise((resolve, reject) => {
-        if (words) {
-            resolve(words.sort());
-        } else {
-            reject('strings only!');
-        }
-    });
-};
+console.log(numbers(1, 2, 3, 4, 5, 6)); // verwachte uitkomst: 21
 
-const theseAreWords = ['promise', 'practice', 'break'];
+const numbers2 = function(num1, num2, num3) {
+    return num1 + num2 + num3;
+}
 
-makeAllCaps(theseAreWords)
-    .then(sortWords(theseAreWords))
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
+const cijfers = [1, 2, 3];
 
-const theseAreNotWords = [1, 'hello', 9];
-
-makeAllCaps(theseAreNotWords)
-    .then(sortWords(theseAreNotWords))
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
+console.log(numbers2(...cijfers));
+// verwachte uitkomst: 6
